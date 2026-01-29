@@ -1,0 +1,81 @@
+═══════════════════════════════════════════════════════════════
+   HOW TO RUN DISCORD RPC IN BACKGROUND (NO TERMINAL FLASH)
+═══════════════════════════════════════════════════════════════
+
+METHOD 1: Using VBS Launcher (RECOMMENDED FOR STARTUP)
+──────────────────────────────────────────────────────────────
+1. Use the provided "run_hidden.vbs" file
+2. Double-click "run_hidden.vbs" to run the script hidden
+3. No terminal window will appear!
+
+For Windows Startup:
+1. Press Win + R
+2. Type: shell:startup
+3. Press Enter (opens Startup folder)
+4. Create a shortcut to "run_hidden.vbs" in the Startup folder
+   OR copy "run_hidden.vbs" directly into the Startup folder
+
+Alternative VBS files:
+- run_hidden.vbs: Uses standard python.exe
+- run_hidden_pythonw.vbs: Uses pythonw.exe (Windows GUI Python)
+
+──────────────────────────────────────────────────────────────
+
+METHOD 2: Using pythonw.exe Directly
+──────────────────────────────────────────────────────────────
+1. Right-click rpc.py → "Open with" → Choose pythonw.exe
+2. pythonw.exe runs Python scripts without a console window
+
+For Startup:
+1. Create a shortcut to rpc.py
+2. Right-click shortcut → Properties
+3. Change target to: pythonw.exe "FULL_PATH_TO\rpc.py"
+4. Place shortcut in Startup folder
+
+──────────────────────────────────────────────────────────────
+
+METHOD 3: Task Scheduler (Most Reliable)
+──────────────────────────────────────────────────────────────
+1. Open Task Scheduler (Win + R → taskschd.msc)
+2. Create Basic Task
+3. Name: "Discord Rich Presence"
+4. Trigger: "When I log on"
+5. Action: "Start a program"
+6. Program: pythonw.exe (or python.exe)
+7. Arguments: "FULL_PATH_TO\rpc.py"
+8. Check "Run whether user is logged on or not"
+9. Check "Hidden"
+
+──────────────────────────────────────────────────────────────
+
+HOW TO STOP THE BACKGROUND PROCESS
+──────────────────────────────────────────────────────────────
+Open Task Manager (Ctrl + Shift + Esc):
+1. Go to "Details" tab
+2. Find "python.exe" or "pythonw.exe"
+3. Right-click → End task
+
+Or use PowerShell:
+  taskkill /F /IM python.exe
+  taskkill /F /IM pythonw.exe
+
+──────────────────────────────────────────────────────────────
+
+TROUBLESHOOTING
+──────────────────────────────────────────────────────────────
+❌ Script not starting?
+   - Verify Discord is running first
+   - Check that Python is installed and in PATH
+   - Run rpc.py normally first to check for errors
+
+❌ VBS file not working?
+   - Try run_hidden_pythonw.vbs instead
+   - Check if Python is in system PATH
+   - Run normally once to verify script works
+
+❌ How to check if it's running?
+   - Open Task Manager → Details tab
+   - Look for python.exe or pythonw.exe process
+   - Check Discord profile for Rich Presence
+
+═══════════════════════════════════════════════════════════════
